@@ -1,0 +1,31 @@
+/* Estilo para obras vendidas */
+.sold-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+
+/* --- CURSOR PARA LA GALERÍA --- */
+/* Fuerza el cursor de mano en todas las tarjetas de arte siempre */
+.art-card, 
+.art-card img, 
+.art-card .img-container,
+.art-card.sold {
+    cursor: pointer !important;
+}
+
+/* Asegura que al cerrar el modal, el cuerpo no bloquee el cursor */
+body {
+    cursor: default;
+}
+
+.art-card.sold:hover {
+    transform: none; /* Quitamos el efecto de agrandar para diferenciarlo */
+}

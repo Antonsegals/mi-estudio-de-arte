@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudio de Arte | Galería Final</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/vendido.css">
     
     <style>
         /* Reset de estilos para evitar errores de visualización */
@@ -265,6 +266,7 @@ header {
 /* --- ESTILOS DE LA MODAL --- */
 .modal {
     display: none; 
+    pointer-events: none;
     position: fixed; 
     z-index: 2000; 
     left: 0; 
@@ -288,6 +290,17 @@ header {
     border-radius: 8px;
     position: relative;
     margin-bottom: 40px; /* Espacio al final para que no choque con el borde */
+}
+
+/* Cuando el modal está abierto, SÍ debe permitir clics */
+.modal[style*="display: flex"], 
+.modal[style*="display: block"] {
+    pointer-events: auto;
+}
+
+/* Asegura el cursor en las tarjetas */
+.art-card {
+    cursor: pointer !important;
 }
 
 /* Ajuste para que la 'X' de cerrar no se pierda */
@@ -418,14 +431,14 @@ body.modal-open .whatsapp-btn {
             <div class="art-card" onclick="abrirObra('Atardecer en Óleo', 'Óleo sobre lienzo', '$450 USD', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600')">
                 <div class="img-container">
                     <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600" alt="Pintura Óleo">
-                </div>
+              </div>
                 <div class="art-info">
                     <h3>Atardecer en Óleo</h3>
                     <p class="technique">Óleo sobre lienzo</p>
                     <p class="price">$450 USD</p>
                     <a href="#" class="btn-small">Consultar</a>
                 </div>
-            </div>
+             </div>
 
             <div class="art-card" onclick="abrirObra('Atardecer en Óleo', 'Óleo sobre lienzo', '$450 USD', 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600')">
                 <div class="img-container">
@@ -453,6 +466,26 @@ body.modal-open .whatsapp-btn {
 
         </div>
     </section>
+
+<section id="vendidas" style="padding: 60px 0; background-color: #f4f4f4;">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 40px;">Obras en Colecciones Privadas</h2>
+        <div class="gallery-grid">
+            
+            <div class="art-card sold" onclick="abrirObra('Naturaleza Muerta', 'Óleo', 'Vendido', 'img/obra1.jpg')">
+                <div class="img-container" style="filter: grayscale(50%);">
+                    <img src="img/obra1.jpg" alt="Obra Vendida">
+                    <div class="sold-badge">Vendido</div>
+                </div>
+                <div class="art-info">
+                    <h3>Naturaleza Muerta</h3>
+                    <p class="price" style="color: #777;">Colección Privada</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <section class="features">
         <div class="container features-grid">
@@ -534,7 +567,7 @@ body.modal-open .whatsapp-btn {
 
 <div id="obraModal" class="modal">
     <div class="modal-content">
-        <span class="close-btn">&times;</span>
+        <span class="close-btn" onclick="cerrarModal()">&times;</span>
         <div class="modal-body">
             <div class="modal-image">
                 <img id="imgModal" src="" alt="Obra ampliada">
@@ -570,7 +603,7 @@ body.modal-open .whatsapp-btn {
        <div id="form-compra" class="form-container">
        <form action="https://formspree.io/f/mreawqwb" method="POST"onsubmit="manejarEnvio(event)">
        <input type="hidden" name="Tipo_Interaccion" value="Intención de Compra">
-        <input type="hidden" name="Nombre_Obra" id="obraInputCompra">
+       <input type="hidden" name="Nombre_Obra" id="obraInputCompra">
         
         <input type="text" name="Nombre_Comprador" placeholder="Nombre completo" required>
         <input type="email" name="Email_Comprador" placeholder="Tu Email" required>
@@ -592,23 +625,49 @@ body.modal-open .whatsapp-btn {
 // Función para abrir la modal
 function abrirObra(titulo, tecnica, precio, img) {
     const modal = document.getElementById('obraModal');
-    modal.style.display = "flex"; // CAMBIO: Usar flex en lugar de block
+    modal.style.display = "flex";
     
     document.getElementById('tituloObra').innerText = titulo;
     document.getElementById('tecnicaObra').innerText = tecnica;
     document.getElementById('precioObra').innerText = precio;
     document.getElementById('imgModal').src = img;
     
+    // Referencias a los botones y formularios
+    const btnComprar = document.querySelector('button[onclick*="compra"]');
+    const btnConsultar = document.querySelector('button[onclick*="consulta"]');
+
+    // LÓGICA PARA OBRAS VENDIDAS
+    if (precio.toLowerCase().includes("vendido")) {
+        btnComprar.style.display = "none"; // Desaparece el botón de comprar
+        btnConsultar.innerText = "Consultar por obra similar";
+        mostrarForm('consulta'); // Por defecto mostramos el formulario de consulta
+    } else {
+        btnComprar.style.display = "block"; // Aseguramos que se vea en las disponibles
+        btnConsultar.innerText = "Consultar";
+    }
+
+    // Datos para Formspree
     document.getElementById('obraInputConsulta').value = titulo;
     document.getElementById('obraInputCompra').value = titulo;
     
     document.body.classList.add('modal-open');
+    ocultarMensajesExito();
 }
 
 // Cerrar modal
-document.querySelector('.close-btn').onclick = function() {
-    document.getElementById('obraModal').style.display = "none";
-document.body.classList.remove('modal-open');
+function cerrarModal() {
+    const modal = document.getElementById('obraModal');
+    
+    // 1. Ocultamos el modal
+    modal.style.display = "none";
+    
+    // 2. ELIMINAMOS la clase que bloquea el scroll y el cursor
+    document.body.classList.remove('modal-open');
+    
+    // 3. Reset manual del cursor por si acaso
+    document.body.style.cursor = "default";
+
+    console.log("Modal cerrado y cursor restaurado");
 }
 
 // Cambiar entre formularios
@@ -622,19 +681,15 @@ function mostrarForm(tipo) {
 
 // --- FUNCIÓN MÁGICA DE ENVÍO SIN RECARGAR ---
  async function manejarEnvio(event) {
-	const telInput = formulario.querySelector('input[type="tel"]');
-        if (telInput && telInput.value.replace(/\s/g, "").length < 9) {
-          alert("Por favor, ingresa un número de teléfono válido de al menos 9 dígitos.");
-          return; // Detiene el envío
-}
-    event.preventDefault(); // Evita que la página se recargue o se vaya a Formspree
+    event.preventDefault();
     const formulario = event.target;
-    const data = new FormData(formulario);
-    const boton = formulario.querySelector('button');
+    const boton = formulario.querySelector('button[type="submit"]');
     const textoOriginal = boton.innerText;
 
-    boton.innerText = "Enviando...";
     boton.disabled = true;
+    boton.innerText = "Enviando...";
+
+    const data = new FormData(formulario);
 
     try {
         const response = await fetch(formulario.action, {
@@ -644,29 +699,30 @@ function mostrarForm(tipo) {
         });
 
         if (response.ok) {
-            // 1. Limpiar el formulario
-            formulario.reset();
-            // 2. Mostrar mensaje de éxito
-            boton.innerText = "¡Mensaje Enviado!";
-            boton.style.background = "#27ae60"; // Cambia a verde éxito
+            // 1. Borra lo que el usuario escribió
+            formulario.reset(); 
             
+            // 2. Muestra mensaje de éxito
+            boton.innerText = "¡Mensaje Enviado!";
+            boton.style.backgroundColor = "#27ae60";
+
             setTimeout(() => {
                 boton.innerText = textoOriginal;
-                boton.style.background = "#d32f2f";
+                boton.style.backgroundColor = "";
                 boton.disabled = false;
-                // Opcional: Cerrar la modal automáticamente tras 2 segundos
+                // Opcional: Cerrar el modal automáticamente
                 // document.getElementById('obraModal').style.display = "none";
+                // document.body.classList.remove('modal-open');
             }, 3000);
-
         } else {
-            alert("Hubo un error al enviar. Por favor, intenta de nuevo.");
-            boton.innerText = textoOriginal;
+            alert("Error al enviar. Asegúrate de haber confirmado tu email en Formspree y desactivado el reCAPTCHA.");
             boton.disabled = false;
+            boton.innerText = textoOriginal;
         }
     } catch (error) {
         alert("Error de conexión.");
-        boton.innerText = textoOriginal;
         boton.disabled = false;
+        boton.innerText = textoOriginal;
     }
 }
 
