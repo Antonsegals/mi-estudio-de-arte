@@ -25,10 +25,126 @@
         .btn-red { background: #d32f2f; color: white; padding: 12px 30px; text-decoration: none; font-weight: bold; border-radius: 4px; display: inline-block; transition: 0.3s; border: none; }
         .btn-red:hover { background: #b71c1c; transform: scale(1.05); }
 
+/* Efecto de desplazamiento suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilos del Navbar */
+.navbar {
+    background-color: white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    position: sticky; /* Se queda fijo al hacer scroll */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #d32f2f;
+}
+
+/* Ajuste para que el Header no quede tapado por el menú */
+header {
+    margin-top: 0;
+}
+
+/* Media Query para móviles */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 15px;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Contenedor de la imagen con recorte */
+        .img-container {
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+            height: 350px;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* Efecto Zoom al pasar el mouse */
+        .art-card:hover .img-container img {
+            transform: scale(1.1);
+        }
+
+        /* Información de la obra */
+        .art-info {
+            padding: 20px;
+            background: white;
+            border: 1px solid #eee;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            text-align: left;
+        }
+
+        .art-info h3 { font-size: 1.2rem; margin-bottom: 5px; color: #111; }
+        .technique { color: #777; font-size: 0.9rem; margin-bottom: 10px; }
+        .price { font-weight: bold; color: #d32f2f; font-size: 1.1rem; margin-bottom: 15px; }
+
+        .btn-small {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid #d32f2f;
+            color: #d32f2f;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-small:hover {
+            background: #d32f2f;
+            color: white;
+        }
+
+
         /* GALERÍA */
         .gallery-section { padding: 60px 0; text-align: center; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
         .art-card img { width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+	.art-card {
+    cursor: pointer;transition: transform 0.3s ease;}
 
         /* SECCIÓN NEGRA (Beneficios) */
         .features { background: #111; color: white; padding: 80px 0; }
@@ -46,15 +162,180 @@
         .about { padding: 80px 0; background: #f4f4f4; text-align: center; }
         .about p { max-width: 800px; margin: 20px auto; font-size: 1.1rem; }
 
+/* --- ESTILOS DE CONTACTO --- */
+.contact-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.contact-section h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #d32f2f; /* El rojo característico de tu marca */
+}
+
+.contact-form .btn-red {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 0 10px;
+    }
+}
+
+/* --- ESTILOS DEL MENÚ --- */
+.menu-toggle {
+    display: none; /* Oculto en PC */
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Aparece en Celular */
+    }
+
+    .nav-links {
+        display: none; /* Se oculta por defecto */
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        gap: 20px;
+        z-index: 999;
+    }
+
+    /* Clase que activaremos con JS */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
         /* FOOTER (EL QUE VAMOS A VERIFICAR) */
         footer { background: #1a1a1a; color: white; padding: 60px 0; text-align: center; width: 100%; }
         .social-icons { margin: 25px 0; }
         .social-icons a { color: white; font-size: 1.8rem; margin: 0 15px; text-decoration: none; transition: 0.3s; }
         .social-icons a:hover { color: #d32f2f; }
         .copy { font-size: 0.85rem; color: #777; margin-top: 20px; }
+
+/* --- ESTILOS DE LA MODAL --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    padding-top: 50px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px; top: 10px;
+    font-size: 35px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-body { display: flex; flex-wrap: wrap; }
+
+.modal-image { flex: 1; min-width: 300px; background: #eee; }
+.modal-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.modal-details { flex: 1; min-width: 300px; padding: 40px; text-align: left; }
+
+.modal-actions { display: flex; gap: 10px; margin: 20px 0; }
+.btn-action { 
+    flex: 1; padding: 10px; border: 1px solid #ddd; background: #f9f9f9; 
+    cursor: pointer; font-weight: bold; 
+}
+.btn-action.active { background: #333; color: white; border-color: #333; }
+
+.form-container { display: none; margin-top: 20px; }
+.form-container.active { display: block; }
+
+.form-container input, .form-container textarea {
+    width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ddd;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .modal-body { flex-direction: column; }
+    .modal-image { height: 250px; }
+}
+
     </style>
 </head>
 <body>
+	<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo">Estudio de Arte</div>
+
+        <button class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="nav-list">
+            <li><a href="#" onclick="cerrarMenu()">Inicio</a></li>
+            <li><a href="#galeria" onclick="cerrarMenu()">Galería</a></li>
+            <li><a href="#contacto" onclick="cerrarMenu()">Contacto</a></li>
+        </ul>
+    </div>
+</nav>
 
     <header>
         <div class="container">
@@ -63,11 +344,46 @@
         </div>
     </header>
 
-    <section class="container gallery-section">
+    <section id="galeria" class="container gallery-section">
+        <h2 style="margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;">Colección Disponible</h2>
         <div class="gallery-grid">
-            <div class="art-card"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500" alt="Obra 1"><h3>Óleo Clásico</h3></div>
-            <div class="art-card"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500" alt="Obra 2"><h3>Dibujo Carbón</h3></div>
-            <div class="art-card"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500" alt="Obra 3"><h3>Arte Digital</h3></div>
+            
+            <div class="art-card" onclick="abrirObra('Atardecer en Óleo', 'Óleo sobre lienzo', '$450 USD', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600')">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600" alt="Pintura Óleo">
+                </div>
+                <div class="art-info">
+                    <h3>Atardecer en Óleo</h3>
+                    <p class="technique">Óleo sobre lienzo</p>
+                    <p class="price">$450 USD</p>
+                    <a href="#" class="btn-small">Consultar</a>
+                </div>
+            </div>
+
+            <div class="art-card" onclick="abrirObra('Atardecer en Óleo', 'Óleo sobre lienzo', '$450 USD', 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600')">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600" alt="Dibujo Carbón">
+                </div>
+                <div class="art-info">
+                    <h3>Mirada Profunda</h3>
+                    <p class="technique">Carboncillo y Grafito</p>
+                    <p class="price">$280 USD</p>
+                    <a href="#" class="btn-small">Consultar</a>
+                </div>
+            </div>
+
+            <div class="art-card" onclick="abrirObra('Atardecer en Óleo', 'Óleo sobre lienzo', '$450 USD', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600')">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600" alt="Arte Digital">
+                </div>
+                <div class="art-info">
+                    <h3>Geometría Etérea</h3>
+                    <p class="technique">Arte Digital (Edición 1/10)</p>
+                    <p class="price">$150 USD</p>
+                    <a href="#" class="btn-small">Consultar</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -102,6 +418,39 @@
         </div>
     </section>
 
+<section id="contacto" class="contact-section">
+    <div class="container">
+        <h2>Ponte en Contacto</h2>
+        <p>¿Te interesa una obra o un encargo personalizado? Escríbeme.</p>
+        
+        <form class="contact-form">
+            <div class="form-group">
+                <input type="text" name="nombre" placeholder="Tu Nombre" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Tu Correo Electrónico" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="asunto" placeholder="Asunto (Ej: Consulta sobre Óleo)" required>
+            </div>
+            <div class="form-group">
+                <textarea name="mensaje" rows="5" placeholder="Tu Mensaje" required></textarea>
+            </div>
+            <button type="submit" class="btn-red">Enviar Mensaje</button>
+        </form>
+    </div>
+</section>
+
+<section id="gracias" style="display:none; padding: 100px 0; text-align: center; background: #f9f9f9;">
+    <div class="container">
+        <i class="fas fa-check-circle" style="font-size: 4rem; color: #27ae60; margin-bottom: 20px;"></i>
+        <h2>¡Mensaje Recibido con Éxito!</h2>
+        <p>Gracias por tu interés en **Estudio de Arte**. Me pondré en contacto contigo muy pronto para concretar los detalles.</p>
+        <br>
+        <a href="index.html" class="btn-red">Volver a la Galería</a>
+    </div>
+</section>
+
     <footer>
         <div class="container">
             <h3>Estudio de Arte</h3>
@@ -115,5 +464,189 @@
         </div>
     </footer>
 
+<div id="obraModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="modal-body">
+            <div class="modal-image">
+                <img id="imgModal" src="" alt="Obra ampliada">
+            </div>
+            <div class="modal-details">
+                <h2 id="tituloObra">Nombre de la Obra</h2>
+                <p id="tecnicaObra" class="technique">Técnica: Óleo</p>
+                <p id="precioObra" class="price">$0.00</p>
+                <hr>
+                
+                <div class="modal-actions">
+                    <button class="btn-action active" onclick="mostrarForm('consulta')">Consultar</button>
+                    <button class="btn-action" onclick="mostrarForm('compra')">Comprar</button>
+                </div>
+
+   <div id="form-consulta" class="form-container active">
+        <form action="https://formspree.io/f/mreawqwb" method="POST"onsubmit="manejarEnvio(event)">
+        <input type="hidden" name="Tipo_Interaccion" value="Consulta de Obra">
+        <input type="hidden" name="Nombre_Obra" id="obraInputConsulta">
+        
+        <input type="text" name="Nombre_Cliente" placeholder="Tu Nombre" required>
+        <input type="email" name="Email_Cliente" placeholder="Tu Email" required>
+       
+        <input type="text" name="_gotcha" style="display:none">
+
+        <textarea name="Mensaje" placeholder="¿Qué te gustaría saber sobre esta obra?" rows="3" required></textarea>
+        
+        <button type="submit" class="btn-red">Enviar Consulta</button>
+
+    </form>
+  </div>
+
+       <div id="form-compra" class="form-container">
+       <form action="https://formspree.io/f/mreawqwb" method="POST"onsubmit="manejarEnvio(event)">
+       <input type="hidden" name="Tipo_Interaccion" value="Intención de Compra">
+        <input type="hidden" name="Nombre_Obra" id="obraInputCompra">
+        
+        <input type="text" name="Nombre_Comprador" placeholder="Nombre completo" required>
+        <input type="email" name="Email_Comprador" placeholder="Tu Email" required>
+        <input type="text" name="Direccion" placeholder="Dirección de Envío" required>
+        <input type="tel" name="Telefono" placeholder="Teléfono (ej: 999 999 999)" oninput="aplicarMascaraTelefono(this)" required>
+
+        <input type="text" name="_gotcha" style="display:none">        
+
+        <button type="submit" class="btn-red">Confirmar Compra</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+// Función para abrir la modal con los datos de la obra
+<script>
+// Función para abrir la modal
+function abrirObra(titulo, tecnica, precio, img) {
+    document.getElementById('obraModal').style.display = "block";
+    document.getElementById('tituloObra').innerText = titulo;
+    document.getElementById('tecnicaObra').innerText = tecnica;
+    document.getElementById('precioObra').innerText = precio;
+    document.getElementById('imgModal').src = img;
+    
+    document.getElementById('obraInputConsulta').value = titulo;
+    document.getElementById('obraInputCompra').value = titulo;
+    
+    // Resetear mensajes de éxito al abrir una nueva obra
+    ocultarMensajesExito();
+}
+
+// Cerrar modal
+document.querySelector('.close-btn').onclick = function() {
+    document.getElementById('obraModal').style.display = "none";
+}
+
+// Cambiar entre formularios
+function mostrarForm(tipo) {
+    document.querySelectorAll('.form-container').forEach(f => f.classList.remove('active'));
+    document.querySelectorAll('.btn-action').forEach(b => b.classList.remove('active'));
+    
+    document.getElementById('form-' + tipo).classList.add('active');
+    event.currentTarget.classList.add('active');
+}
+
+// --- FUNCIÓN MÁGICA DE ENVÍO SIN RECARGAR ---
+ async function manejarEnvio(event) {
+	const telInput = formulario.querySelector('input[type="tel"]');
+        if (telInput && telInput.value.replace(/\s/g, "").length < 9) {
+          alert("Por favor, ingresa un número de teléfono válido de al menos 9 dígitos.");
+          return; // Detiene el envío
+}
+    event.preventDefault(); // Evita que la página se recargue o se vaya a Formspree
+    const formulario = event.target;
+    const data = new FormData(formulario);
+    const boton = formulario.querySelector('button');
+    const textoOriginal = boton.innerText;
+
+    boton.innerText = "Enviando...";
+    boton.disabled = true;
+
+    try {
+        const response = await fetch(formulario.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            // 1. Limpiar el formulario
+            formulario.reset();
+            // 2. Mostrar mensaje de éxito
+            boton.innerText = "¡Mensaje Enviado!";
+            boton.style.background = "#27ae60"; // Cambia a verde éxito
+            
+            setTimeout(() => {
+                boton.innerText = textoOriginal;
+                boton.style.background = "#d32f2f";
+                boton.disabled = false;
+                // Opcional: Cerrar la modal automáticamente tras 2 segundos
+                // document.getElementById('obraModal').style.display = "none";
+            }, 3000);
+
+        } else {
+            alert("Hubo un error al enviar. Por favor, intenta de nuevo.");
+            boton.innerText = textoOriginal;
+            boton.disabled = false;
+        }
+    } catch (error) {
+        alert("Error de conexión.");
+        boton.innerText = textoOriginal;
+        boton.disabled = false;
+    }
+}
+
+function ocultarMensajesExito() {
+    // Resetear botones si quedaron en verde de un envío anterior
+    document.querySelectorAll('.btn-red').forEach(b => {
+        b.style.background = "#d32f2f";
+        b.disabled = false;
+    });
+}
+
+function aplicarMascaraTelefono(input) {
+    // 1. Eliminar todo lo que no sea un número
+    let valor = input.value.replace(/\D/g, "");
+    
+    // 2. Limitar a un máximo de 9 o 11 dígitos (según tu país)
+    valor = valor.substring(0, 11);
+
+    // 3. Formatear el número (Ejemplo: 999 999 999)
+    let formateado = "";
+    if (valor.length > 0) {
+        formateado = valor.match(/.{1,3}/g).join(" ");
+    }
+    
+    // 4. Devolver el valor formateado al input
+    input.value = formateado;
+}
+
+const menuBtn = document.getElementById('mobile-menu');
+const navList = document.getElementById('nav-list');
+
+// Al hacer clic en las rayitas, abre o cierra
+menuBtn.addEventListener('click', () => {
+    navList.classList.toggle('active');
+    // Cambia el icono de barras a una "X" al abrir
+    const icon = menuBtn.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+});
+
+// Función para que el menú se cierre solo al hacer clic en una opción
+function cerrarMenu() {
+    if (navList.classList.contains('active')) {
+        navList.classList.remove('active');
+        const icon = menuBtn.querySelector('i');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+    }
+}
+
+</script>
 </body>
 </html>
