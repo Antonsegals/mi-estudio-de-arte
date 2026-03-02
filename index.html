@@ -267,31 +267,43 @@ header {
     display: none; 
     position: fixed; 
     z-index: 2000; 
-    left: 0; top: 0;
-    width: 100%; height: 100%;
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
     background-color: rgba(0,0,0,0.9);
+    /* Usamos Flexbox con un pequeño padding para que no se pegue arriba */
     display: none; 
-    align-items: center; 
+    align-items: flex-start; /* Alinea al inicio (arriba) */
     justify-content: center;
+    padding: 40px 0; /* Espacio de cortesía arriba y abajo */
+    overflow-y: auto; /* Permite scroll si la pantalla es muy pequeña */
 }
 
 .modal-content {
     background-color: #fff;
-    width: 90%;
+    width: 95%;
     max-width: 1000px;
-    max-height: 90vh; /* Ocupa máximo el 90% de la altura de la pantalla */
+    /* Quitamos el max-height rígido para que fluya mejor con el padding del padre */
     border-radius: 8px;
     position: relative;
-    overflow-y: auto; /* PERMITE HACER SCROLL DENTRO DE LA VENTANA BLANCA */
-    margin: auto;
+    margin-bottom: 40px; /* Espacio al final para que no choque con el borde */
 }
 
+/* Ajuste para que la 'X' de cerrar no se pierda */
 .close-btn {
     position: absolute;
-    right: 20px; top: 10px;
-    font-size: 35px;
-    cursor: pointer;
-    z-index: 10;
+    right: 15px; 
+    top: 10px;
+    font-size: 30px;
+    background: rgba(255,255,255,0.8); /* Fondo semitransparente para verla siempre */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
 }
 
 .modal-body { display: flex; flex-wrap: wrap; }
@@ -330,6 +342,16 @@ header {
 
     .modal-details {
         padding: 20px; /* Reducimos el padding en móvil para ganar espacio */
+    }
+
+	.modal-actions {
+        flex-direction: column; /* Botones uno sobre otro en celular */
+        gap: 10px;
+    }
+    
+    .btn-action {
+        width: 100%;
+        padding: 15px; /* Más fáciles de tocar con el dedo */
     }
 }
 
