@@ -1,3 +1,9 @@
+html, body {
+    overflow-x: hidden; /* Evita el scroll horizontal por las animaciones laterales */
+    width: 100%;
+    position: relative;
+}
+
 /* Estilo para obras vendidas */
 .sold-badge {
     position: absolute;
@@ -104,4 +110,19 @@ body {
 .features {
     padding: 60px 20px; 
 }
-   
+
+
+/* --- ESTILOS PARA EL EFECTO DE APARICIÓN (FADE-IN) --- */
+/* Estas reglas permiten el movimiento lateral */
+.reveal-left, .reveal-right {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Movimiento más orgánico */
+}
+
+.reveal-left { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+
+.reveal-left.active, .reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
