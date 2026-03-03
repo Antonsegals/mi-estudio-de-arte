@@ -1,0 +1,21 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs y archivos temporales
+*.log
+npm-debug.log*
+
+# Carpetas de dependencias (si usas librerías)
+node_modules/
+dist/
+build/
+
+# ARCHIVOS SENSIBLES (¡Importante!)
+.env
+config.json
+secrets.txt
+
+# Notas personales y pruebas de formularios
+pruebas_form.txt
+notas.md
