@@ -29,3 +29,79 @@ body {
 .art-card.sold:hover {
     transform: none; /* Quitamos el efecto de agrandar para diferenciarlo */
 }
+
+
+@media (max-width: 768px) {
+    /* Añadimos espacio a los lados para que las tarjetas no toquen el borde */
+    .gallery-grid {
+        padding: 0 20px; 
+        gap: 25px; /* Espacio vertical entre una obra y otra */
+    }
+
+    /* Redondeamos un poco las esquinas de la tarjeta para que se vea más moderno */
+    .art-card {
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Una sombra suave para dar profundidad */
+    }
+}
+
+@media (max-width: 768px) {
+    .art-info {
+        padding: 15px; /* Espacio interno para que el título y precio respiren */
+    }
+    
+    .art-info h3 {
+        font-size: 1.4rem; /* Un poco más grande para que destaque en celular */
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Centrar el título de la sección de beneficios */
+    .features h2 {
+        text-align: center;
+        padding: 0 20px;
+        margin-bottom: 30px;
+    }
+
+    /* Ajustar el contenedor para que los elementos se apilen al centro */
+    .features-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Centrar la lista de beneficios */
+    .features-list {
+        border-left: none; /* Quitamos la línea roja lateral que se ve a la izquierda */
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .features-list li {
+        text-align: center;
+        margin-bottom: 20px;
+        width: fit-content; /* Para que la línea decorativa se ajuste al texto */
+    }
+
+    /* Añadimos la línea roja decorativa centrada debajo de cada beneficio */
+    .features-list li::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 2px;
+        background-color: #d32f2f;
+        margin: 10px auto 0;
+    }
+}
+
+/* Aseguramos que la sección tenga margen a los lados en móvil */
+.features {
+    padding: 60px 20px; 
+}
+   
