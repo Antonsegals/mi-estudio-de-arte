@@ -319,10 +319,10 @@ header {
 /* Ajuste para que la 'X' de cerrar no se pierda */
 .close-btn {
     position: absolute;
-    right: 15px; 
-    top: 10px;
+    top: 15px;
+    right: 15px;    
     font-size: 30px;
-    background: rgba(255,255,255,0.8); /* Fondo semitransparente para verla siempre */
+    /*background: rgba(255,255,255,0.8); /* Fondo semitransparente para verla siempre */
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -330,6 +330,15 @@ header {
     align-items: center;
     justify-content: center;
     z-index: 100;
+    cursor: pointer;
+    background: rgba( 0,0,0,0.1);
+    padding-bottom: 7px;
+ 
+}
+
+.close-btn:hover {
+    transform: scale(1.1);
+    color: #d32f2f;
 }
 
 .modal-body { display: flex; flex-wrap: wrap; }
@@ -358,6 +367,10 @@ header {
     .modal-image {
         height: auto; 
         max-height: 300px; /* Limitamos la altura de la foto en celular para que no ocupe todo */
+    }
+    
+    .close-btn {
+       background: rgba(255,255,255,0.8);
     }
     
     .modal-image img {
@@ -433,7 +446,7 @@ body.modal-open .whatsapp-btn {
     <header>
         <div class="container">
             <h1>Descubre obras de arte perfectas para tu colección</h1>
-            <a href="#" class="btn-red">Ver Obras disponibles</a>
+            <a href="#galeria" class="btn-red">Ver Obras Disponibles</a>
         </div>
     </header>
 
@@ -444,39 +457,75 @@ body.modal-open .whatsapp-btn {
     
     <div class="gallery-grid">
         
-      <!--  <div class="art-card reveal-left"style="transition-delay: 0.1s;" onclick="abrirObra('Atardecer en Óleo', 'Óleo sobre lienzo', '$450 USD', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600')">  -->
-          <div class="art-card sold reveal-right"style="transition-delay: 0.1s;" onclick="abrirObra('Atardecer en Óleo', 'Óleo sobre lienzo', '$450 USD', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600')">
+      <!--  <div class="art-card reveal-left"style="transition-delay: 0.1s;" onclick="abrirObra('Utensilios', 'Acrílico sobre lienzo', '$450 USD', 'https://i.postimg.cc/xT306G46/utensilios-sc.jpg')">  -->
+          <div class="art-card sold reveal-right"style="transition-delay: 0.1s;" onclick="abrirObra('Utensilios', 'Acrílico sobre lienzo', '$250 USD', 'https://i.postimg.cc/xT306G46/utensilios-sc.jpg')">
             <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600" alt="Pintura Óleo">
+                <img src="https://i.postimg.cc/xT306G46/utensilios-sc.jpg" alt="Pintura Acrílica">
             </div>
             <div class="art-info">
-                <h3>Atardecer en Óleo</h3>
-                <p class="technique">Óleo sobre lienzo</p>
-                <p class="price">$450 USD</p>
+                <h3>Utensilios</h3>
+                <p class="technique">Acrílico sobre lienzo</p>
+                <p class="price">$250 USD</p>
                 <a href="#" class="btn-small">Consultar</a>
             </div>
         </div>
 
-        <div class="art-card sold reveal-right" style="transition-delay: 0.3s;" onclick="abrirObra('Mirada Profunda', 'Carboncillo y Grafito', '$280 USD', 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600')">
+        <div class="art-card sold reveal-right" style="transition-delay: 0.3s;" onclick="abrirObra('Artifex', 'Acrílico sobre lienzo', '$600 USD', 'https://i.postimg.cc/BnCBZzwT/476143614-122121426206622317-779355524641664395-n.jpg')">
             <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600" alt="Dibujo Carbón">
+                <img src="https://i.postimg.cc/BnCBZzwT/476143614-122121426206622317-779355524641664395-n.jpg" alt="Pintura Acrílica">
             </div>
             <div class="art-info">
-                <h3>Mirada Profunda</h3>
-                <p class="technique">Carboncillo y Grafito</p>
-                <p class="price">$280 USD</p>
+                <h3>Artifex</h3>
+                <p class="technique">Acrílico sobre lienzo</p>
+                <p class="price">$600 USD</p>
                 <a href="#" class="btn-small">Consultar</a>
             </div>
         </div>
 
-        <div class="art-card sold reveal-right" style="transition-delay: 0.5s;" onclick="abrirObra('Geometría Etérea', 'Arte Digital (Edición 1/10)', '$150 USD', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600')">
+        <div class="art-card sold reveal-right" style="transition-delay: 0.5s;" onclick="abrirObra('Juego Eterno', 'Acrílico sobre Trupan (Edición 1/10)', '$250 USD', 'https://i.postimg.cc/yNYXDTwr/IMG-20250410-114016-(1).jpg')">
             <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600" alt="Arte Digital">
+                <img src="https://i.postimg.cc/yNYXDTwr/IMG-20250410-114016-(1).jpg" alt="Arte Digital">
             </div>
             <div class="art-info">
-                <h3>Geometría Etérea</h3>
-                <p class="technique">Arte Digital (Edición 1/10)</p>
-                <p class="price">$150 USD</p>
+                <h3>Juego Eterno</h3>
+                <p class="technique">Acrílico sobre Trupan (Edición 1/10)</p>
+                <p class="price">$250 USD</p>
+                <a href="#" class="btn-small">Consultar</a>
+            </div>
+        </div>
+
+        <div class="art-card sold reveal-right" style="transition-delay: 0.5s;" onclick="abrirObra('La Viudita', 'Acrílico sobre Trupan (Edición 1/5)', '$350 USD', 'https://i.postimg.cc/g2KHc7Bq/v.jpg')">
+            <div class="img-container">
+                <img src="https://i.postimg.cc/g2KHc7Bq/v.jpg" alt="Arte Digital">
+            </div>
+            <div class="art-info">
+                <h3>La Viudita</h3>
+                <p class="technique">Acrílico sobre Trupan (Edición 1/5)</p>
+                <p class="price">$350 USD</p>
+                <a href="#" class="btn-small">Consultar</a>
+            </div>
+        </div>
+
+        <div class="art-card sold reveal-right" style="transition-delay: 0.5s;" onclick="abrirObra('Imagen que Dejamos', 'Carboncillo de sauce sobre cartulina hilada (Edición 1/5)', '$ Consultar', 'https://i.postimg.cc/14hr41QH/Nino.jpg')">
+            <div class="img-container">
+                <img src="https://i.postimg.cc/14hr41QH/Nino.jpg" alt="Carboncillo de sauce sobre cartulina hilada">
+            </div>
+            <div class="art-info">
+                <h3>Imagen que Dejamos</h3>
+                <p class="technique">Carboncillo de sauce sobre cartulina hilada (Edición 1/5)</p>
+                <p class="price">$ Consultar</p>
+                <a href="#" class="btn-small">Consultar</a>
+            </div>
+        </div>
+
+        <div class="art-card sold reveal-right" style="transition-delay: 0.5s;" onclick="abrirObra('Herencia del Sabor', 'Acrílico sobre Trupan (Edición 1/5)', '$250 USD', 'https://i.postimg.cc/1539YV10/tacu.jpg')">
+            <div class="img-container">
+                <img src="https://i.postimg.cc/1539YV10/tacu.jpg" alt="Arte Digital">
+            </div>
+            <div class="art-info">
+                <h3>Herencia del Sabor</h3>
+                <p class="technique">Acrílico sobre Trupan (Edición 1/5)</p>
+                <p class="price">$250 USD</p>
                 <a href="#" class="btn-small">Consultar</a>
             </div>
         </div>
@@ -524,6 +573,39 @@ body.modal-open .whatsapp-btn {
                 </div>
             </div>
 
+            <div class="art-card sold reveal-right" onclick="abrirObra('Obra Personalizada', 'Acrílico', 'Vendido', 'img/obra5.jpg')">
+                <div class="img-container" style="filter: grayscale(50%);">
+                    <img src="img/obra5.jpg" alt="Obra Vendida">
+                    <div class="sold-badge">Vendido</div>
+                </div>
+                <div class="art-info">
+                    <h3>Obra Personalizada</h3>
+                    <p class="price" style="color: #777;">Colección Privada</p>
+                </div>
+            </div>
+
+            <div class="art-card sold reveal-right" onclick="abrirObra('Alegoría de tres damas', 'Acrílico', 'Vendido', 'img/obra6.jpg')">
+                <div class="img-container" style="filter: grayscale(50%);">
+                    <img src="img/obra6.jpg" alt="Obra Vendida">
+                    <div class="sold-badge">Vendido</div>
+                </div>
+                <div class="art-info">
+                    <h3>Alegoría de tres damas</h3>
+                    <p class="price" style="color: #777;">Colección Privada</p>
+                </div>
+            </div>
+ 
+            <div class="art-card sold reveal-right" onclick="abrirObra('Las amigas', 'Acrílico', 'Vendido', 'img/obra7.jpg')">
+                <div class="img-container" style="filter: grayscale(50%);">
+                    <img src="img/obra7.jpg" alt="Obra Vendida">
+                    <div class="sold-badge">Vendido</div>
+                </div>
+                <div class="art-info">
+                    <h3>Las amigas</h3>
+                    <p class="price" style="color: #777;">Colección Privada</p>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -535,7 +617,7 @@ body.modal-open .whatsapp-btn {
         <div class="features-grid">
             <ul class="features-list">
                 <li class="reveal-right" style="transition-delay: 0.1s;">Piezas de edición limitada</li>
-                <li class="reveal-right" style="transition-delay: 0.3s;">Artistas emergentes talentosos</li>
+                <li class="reveal-right" style="transition-delay: 0.3s;">Calidad de las obras</li>
                 <li class="reveal-right" style="transition-delay: 0.5s;">Envío seguro y asegurado</li>
                 <li class="reveal-right" style="transition-delay: 0.7s;">Garantía de autenticidad</li>
             </ul>
@@ -550,7 +632,7 @@ body.modal-open .whatsapp-btn {
             <div class="test-box">"El talento de los artistas es excepcional. Muy recomendado." - Juan P.</div>
             <div class="test-box">"Piezas únicas que no encuentras en otro lugar." - Carla M.</div>
         </div>
-        <a href="#" class="btn-red">Ver más testimonios</a>
+        <a href="https://miblogdearte-6529e.web.app/" class="btn-red">Ver más testimonios</a>
     </section>
 
     <section class="about">
@@ -606,7 +688,7 @@ body.modal-open .whatsapp-btn {
         </div>
         
         <p class="reveal-left" style="font-size: 0.9rem; color: #888; transition-delay: 0.7s;">
-            &copy; 2024 Estudio de Arte - Todos los derechos reservados
+            &copy; 2022 Estudio de Arte Jennju - Todos los derechos reservados
         </p>
     </div>
 </footer>
@@ -858,7 +940,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
-<a href="https://wa.me/51999999999?text=Hola!%20Vengo%20de%20tu%20sitio%20web%20y%20me%20gustaría%20más%20información%20sobre%20tus%20obras." 
+<a href="https://wa.me/59162053383?text=Hola!%20Vengo%20de%20tu%20sitio%20web%20y%20me%20gustaría%20más%20información%20sobre%20tus%20obras." 
    class="whatsapp-btn" 
    target="_blank">
     <i class="fab fa-whatsapp"></i>
